@@ -55,7 +55,7 @@ class DataSystem {
       this.dataStore = [];
     }
   
-    // made class method to add a new ticket object to tickets array.
+    // made class method to add a new data object to data array.
     add({ problem, solution }){
       this.dataStore.push({
         problem,
@@ -64,54 +64,54 @@ class DataSystem {
     }
   }
   
-  // making a new ticket system
+  // making a new data system
   const dataStore = new DataSystem();
   
-  // adding a click event to the add button, so when you click it it adds the ticket to the ticket system and re-renders the DOM.
+  // adding a click event to the add button, so when you click it it adds the data to the data system and re-renders the DOM.
   //document.querySelector("button").addEventListener("click", () => saveData());
   
   function saveData() {
-    // using add method to add new ticker.
+    // using add method to add new data.
     dataStore.add({
       // selecting the value of the element with id of problem;
       problem: userText.value,
       // selecting the value of the element with id of solution;
       solution: cardText.innerText,
     })
-    // rerendering the ticket list in the DOM
+    // rerendering the data list in the DOM
     displayData();
   }
   
-  // loops through the tickets and adds them to dom.
+  // loops through the data and adds them to dom.
   function displayData() {
-    // selecting element with id of tickets
+    // selecting element with id of data
     const parent = userData;
     // clearing it so it has noting inside.
     // do this so we don't have duplicate data.
     parent.innerHTML = "";
     
-    // looping through each ticket in the ticket system.
+    // looping through each data in the data system.
     dataStore.dataStore.forEach(t => {
       // making a new div element.
       const elm = document.createElement("div");
-      // giving it a class of ticket
+      // giving it a class of data
       elm.classList.add("user-data");
       
       // making a new div element.
       const prob = document.createElement("div");
       // giving it a class of problem
       prob.classList.add("user-text");
-      //setting it's text value to the current tickets problem;
+      //setting it's text value to the current data problem;
       prob.textContent = t.problem;
       
       // making a new div element.
       const solu = document.createElement("div");
       // giving it a class of solution
       solu.classList.add("card-text");
-      //setting it's text value to the current tickets solution;
+      //setting it's text value to the current data solution;
       solu.textContent = t.solution;
       
-      // adding the problem and solution div to the ticket div.
+      // adding the problem and solution div to the data div.
       elm.appendChild(prob);
       elm.appendChild(solu);
       
@@ -121,96 +121,3 @@ class DataSystem {
   }
   
   saveData();
-
-/*let dataStore = []
-
-let user = "";
-    strategy = "";
-
-function saveData() {
-    newPair = {dilemma: userText.value, strategy: cardText.innerText};
-    dataStore.push( newPair )
-    displayData();
-}
-
-function doSmtElse( element ) {
- 
-    console.log( "element is here : " , element , element.dilemma , element.strategy)
- 
-
-    for (let i = 0; i < dataStore.length; i++) {
-        if (i === 0) {break;}
-        const element = dataStore[i];
-        doSmtElse(element )
-    }
-}
-
-function displayData() {
- 
-    console.log( "dataStore is here : " , dataStore)
- 
-
-    for (let i = 0; i < dataStore.length; i++) {
-        const element = dataStore[i];
-        userData.innerHTML = doSmtElse(element)
-    }
-}
-
-
-
-
-/*function saveData() {
-    let userDilemma = userText.value;
-    let userStrategy = cardText.innerText;
-    user[user.length] = userDilemma;
-    strategy[strategy.length] = userStrategy;
-    displayData();
-}
-    
-function displayData(){
-    let data = ("<b>Dilemma : Strategy</b></br>");
-    for(let i = 0; i < user.length; i++) {
-        data +=user[i]+"&nbsp<b>:</b>&nbsp";
-    }
-    for(let i = 0; i < strategy.length; i++) {
-        data += strategy[i]+"<br>";
-    }
-    userData.innerHTML = data;
-}
-
-/*function doSmtElse( element ) {
- 
-    console.log( "element is here : " , element , element.dilemma , element.strategy)
- 
-
-    for (let index = 0; index < dataStore.length; index++) {
-        const element = dataStore[index];
-        doSmtElse(element )
-    }
-}
-
-
-let dilemma = new Array();
-    strategy = new Array();
-
-function saveData() {
-    newPair = {dilemma: userText.value, strategy: cardText.innerText};
-    dataStore = [...dataStore, newPair];
-    console.log(dataStore);
-}
-
-function displayData() {
-    dataStore = userData.innerHTML
-    userData.innerHTML = (console.log(dataStore));
-}
-
-function displayData(){
-    let data = ("<b>Dilemma : Strategy</b></br>");
-    for(let i = 0; i < user.length; i++) {
-        data +=user[i]+"&nbsp<b>:</b>&nbsp";
-    }
-    for(let i = 0; i < strategy.length; i++) {
-        data += strategy[i]+"<br>";
-    }
-    userData.innerHTML = data;
-}*/
