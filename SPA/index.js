@@ -1,4 +1,3 @@
-// declare and initialize constant variables using document method
 
 const cardText = document.getElementById('card-text'),
         userText = document.getElementById('user-text'),
@@ -8,7 +7,6 @@ const cardText = document.getElementById('card-text'),
         userBtn = document.getElementById('user-btn'),
         saveBtn = document.getElementById('save-btn'),
         url = 'http://brianeno.needsyourhelp.org/draw';
-
 
 function randomCard() {
     fetch(url)
@@ -40,14 +38,10 @@ function learnMore() {
 function checkInput() {
     if (userText.value === "" )
     {
-        userText.value = errorMessage()
+        userText.value = window.alert("A dilemma must be entered. Try again.")
+        return userText.value
     }
     else randomCard()
-}
-
-function errorMessage() {
-    window.alert("A dilemma must be entered. Try again.")
-    return userText.value
 }
 
 class DataSystem {
@@ -55,10 +49,10 @@ class DataSystem {
       this.dataStore = [];
     }
 
-    add({ problem, solution }){
+    add({ dilemma, strategy }){
       this.dataStore.push({
-        problem,
-        solution
+        dilemma,
+        strategy
       });
     }
   }
@@ -67,8 +61,8 @@ class DataSystem {
   
   function saveData() {
     dataStore.add({
-      problem: userText.value,
-      solution: cardText.innerText,
+      dilemma: userText.value,
+      strategy: cardText.innerText,
     })
     displayData();
   }
@@ -78,22 +72,20 @@ class DataSystem {
     parent.innerHTML = "";
     
     dataStore.dataStore.map(data => {
-      const elm = document.createElement("div");
-      elm.classList.add("user-data");
+      const store = document.createElement("div");
+      store.classList.add("user-data");
       
-      const prob = document.createElement("div");
-      prob.classList.add("user-text");
-      prob.textContent = data.problem;
+      const dil = document.createElement("div");
+      dil.classList.add("user-text");
+      dil.textContent = data.dilemma;
       
-      const solu = document.createElement("div");
-      solu.classList.add("card-text");
-      solu.textContent = data.solution;
+      const strat = document.createElement("div");
+      strat.classList.add("card-text");
+      strat.textContent = data.strategy;
 
-      elm.appendChild(prob);
-      elm.appendChild(solu);
+      store.appendChild(dil);
+      store.appendChild(strat);
       
-      parent.appendChild(elm);
+      parent.appendChild(store);
     });
   }
-  
-  saveData();
